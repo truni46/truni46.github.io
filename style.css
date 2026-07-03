@@ -31,7 +31,9 @@ html {
 }
 
 /* Glassmorphism Utilities */
-.glass-panel, .glass-card, .glass-nav {
+.glass-panel,
+.glass-card,
+.glass-nav {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -41,7 +43,9 @@ html {
 }
 
 /* Typography & Accent */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 800;
     color: #1a202c;
 }
@@ -76,22 +80,32 @@ a {
     max-width: 1000px;
     height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Căn giữa các thẻ menu */
     align-items: center;
     padding: 0 40px;
     z-index: 1000;
+    transition: var(--transition);
+    
+    /* Tăng độ Glass riêng cho Topbar */
+    background: rgba(255, 255, 255, 0.35); /* Trắng trong suốt hơn */
+    backdrop-filter: blur(24px); /* Làm mờ cảnh phía sau mạnh hơn */
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Viền sáng hơn tạo độ bóng của kính */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Đổ bóng sâu và mềm mại hơn */
     border-radius: 35px;
-    background: rgba(255, 255, 255, 0.9);
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    position: absolute; /* Đặt logo ở dạng tuyệt đối để không đẩy lệch các thẻ menu */
+    left: 40px;
 }
 
-.logo span {
-    color: var(--accent);
+.logo img {
+    height: 35px;
+    /* Chiều cao phù hợp với navbar 60px */
+    width: auto;
 }
 
 .nav-links {
@@ -178,7 +192,8 @@ section {
 .hero-social-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align left */
+    align-items: flex-start;
+    /* Align left */
     gap: 20px;
     width: 100%;
 }
@@ -229,7 +244,8 @@ section {
 }
 
 .cv-btn-large:hover {
-    background: #5a8f07; /* Màu xanh lá đậm hơn một chút */
+    background: #5a8f07;
+    /* Màu xanh lá đậm hơn một chút */
 }
 
 .hero-content {
@@ -275,209 +291,413 @@ section {
     z-index: -1;
 }
 
-.timeline {
+/* Center Timeline */
+.timeline-centered {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    padding-bottom: 20px;
 }
 
-.timeline::before {
+.timeline-centered::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 15px;
+    bottom: 0;
+    left: 50%;
     width: 2px;
-    height: 100%;
+    margin-left: -1px;
     background-color: var(--accent);
     opacity: 0.3;
 }
 
-.timeline-item {
+.timeline-year {
+    text-align: center;
     position: relative;
-    margin-bottom: 40px;
-    padding-left: 50px;
+    z-index: 2;
+    margin: 60px 0 40px 0;
 }
 
-.timeline-item:last-child {
-    margin-bottom: 0;
+.timeline-year:first-child {
+    margin-top: 0;
 }
 
-.timeline-dot {
-    position: absolute;
-    left: 9px; /* Căn giữa với đường line 15px (9 + 14/2 = 16) */
-    top: 35px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: var(--accent); /* Khôi phục màu xanh cũ */
-}
-
-.timeline-content {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* Bóng đổ cực mỏng và nhẹ */
-}
-
-.timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.timeline-header h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--text-dark);
-}
-
-.timeline-date {
-    background: rgba(115, 182, 9, 0.1);
-    color: var(--accent);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.timeline-company {
+.timeline-year span {
+    background: var(--accent);
+    color: white;
+    padding: 6px 20px;
+    border-radius: 4px;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #555;
-    margin-bottom: 5px;
+    letter-spacing: 1px;
+    /* box-shadow: 0 4px 10px rgba(115, 182, 9, 0.3); */
 }
 
-.timeline-location {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 15px;
-}
-
-.timeline-location i {
-    margin-right: 5px;
-    color: #000; /* Icon map màu đen */
-}
-
-.timeline-tasks {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 0 15px 0;
-}
-
-.timeline-tasks li {
+.timeline-item {
+    width: 50%;
     position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    color: #444;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    margin-bottom: 40px;
 }
 
-.timeline-tasks li::before {
-    content: '•';
-    position: absolute;
+.timeline-item.left {
     left: 0;
-    color: #000; /* Đổi màu dấu chấm tròn của list thành đen */
-    font-weight: bold;
-    font-size: 1.2rem; /* Phóng to dấu chấm một chút */
-    line-height: 1.3;
-}
-
-/* Expandable Projects in Experience */
-.exp-projects-wrapper {
-    margin-bottom: 15px;
+    padding-right: 40px;
+    text-align: right;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-end;
+    /* Đẩy khối content sát ra bên phải trục */
 }
 
-.exp-project-item {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background: #fff;
-    overflow: hidden;
-}
-
-.exp-project-header {
+.timeline-item.right {
+    left: 50%;
+    padding-left: 40px;
+    text-align: left;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Đẩy khối content sát ra bên trái trục */
+}
+
+/* Khối bao bọc thẻ và tranh để chúng căn giữa vào nhau */
+.milestone-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 12px 15px;
-    cursor: pointer;
-    background: #fdfdfd;
-    transition: background 0.2s ease;
+    /* Căn giữa tranh và thẻ mốc với nhau */
 }
 
-.exp-project-header:hover {
-    background: #f5f5f5;
+/* Timeline connecting line */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    height: 3px;
+    background-color: var(--accent);
+    top: 24px;
+    /* Center horizontally with the first row */
+    width: 40px;
+    /* Bằng với padding của timeline-item */
+    z-index: 1;
 }
 
-.exp-project-header h4 {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #333;
-    font-weight: 600;
+.timeline-item.left::before {
+    right: 0;
 }
 
-.exp-project-header i {
-    font-size: 0.8rem;
-    color: #666;
-    transition: transform 0.3s ease;
+.timeline-item.right::before {
+    left: 0;
 }
 
-/* Accordion Logic */
-.exp-project-content-wrapper {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease;
+/* Timeline dot */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
     background: #fff;
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    top: 14px;
+    /* (24px - 11px radius) để nằm ngay giữa đường kẻ ngang */
+    z-index: 2;
 }
 
-.exp-project-item.expanded .exp-project-content-wrapper {
-    grid-template-rows: 1fr;
+.timeline-item.left::after {
+    right: -11px;
+    /* Đẩy chấm ra giữa trục (22px/2) */
 }
 
-.exp-project-item.expanded .exp-project-header i {
-    transform: rotate(180deg);
+.timeline-item.right::after {
+    left: -11px;
+    /* Đẩy chấm ra giữa trục (22px/2) */
 }
 
-.exp-project-content {
-    min-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.exp-project-item.expanded .exp-project-content {
-    opacity: 1;
-}
-
-.exp-project-content-inner {
-    padding: 10px 15px 15px 15px;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.5;
-    border-top: 1px solid #f0f0f0;
-}
-
-.timeline-gallery {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.timeline-gallery img {
+.milestone-card {
+    background-color: var(--accent);
+    border: 2.5px solid #000;
     border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid #eaeaea;
-    transition: transform 0.3s ease;
+    padding: 12px 12px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* box-shadow: 2px 2px 0px rgba(0,0,0,1); */
+    transition: var(--transition);
 }
 
-.timeline-gallery img:hover {
-    transform: scale(1.05);
+.milestone-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.milestone-row-1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    /* Giảm khoảng cách giữa 2 hàng chữ */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.title-normal {
+    color: #fff;
+    font-size: 1.2rem;
+    /* Giảm font size */
+    font-weight: 500;
+}
+
+.title-badge {
+    background-color: #fff;
+    color: var(--accent);
+    padding: 0px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    /* Giảm font size */
+}
+
+.milestone-row-2 {
+    width: 100%;
+    text-align: right;
+}
+
+.subtitle {
+    color: #fff;
+    font-size: 0.9rem;
+    /* Giảm font size */
+    font-weight: 500;
+    padding: 0px 6px;
+}
+
+/* Ghi đè căn lề cho thẻ ở nhánh bên phải */
+.timeline-item.right .milestone-card {
+    align-items: flex-start;
+}
+
+.timeline-item.right .milestone-row-1 {
+    justify-content: flex-start;
+}
+
+.timeline-item.right .milestone-row-2 {
+    text-align: left;
+}
+
+/* Container chứa các chuỗi khung tranh */
+.frames-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    /* Nhường chỗ cho móc treo của chuỗi khung tranh */
+}
+
+.timeline-item.left .frames-container {
+    justify-content: flex-end;
+}
+
+.timeline-item.right .frames-container {
+    justify-content: flex-start;
+}
+
+/* Chuỗi khung tranh (sẽ đung đưa đồng bộ) */
+.frame-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Khoảng cách giữa khung trên và khung dưới */
+    transform-origin: top center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.frame-chain:hover {
+    transform: rotate(-2deg) scale(1.02);
+}
+
+/* Hanging Picture Frame (Wood Style) */
+.hanging-frame {
+    position: relative;
+    display: block;
+    width: 130px;
+    /* Thu nhỏ để có thể treo song song 2 chuỗi */
+    background: #6D4C41;
+    /* Màu viền gỗ nâu */
+    padding: 8px;
+    /* Độ dày của viền khung */
+    border-radius: 2px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* Lõi trắng (Matting) bên trong khung tranh */
+.frame-inner {
+    background: #fff;
+    padding: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.hanging-frame img {
+    width: 100%;
+    display: block;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Sợi dây thừng hình tam giác (Khung trên cùng) */
+.top-frame::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    /* Kéo góc tam giác lên trên khung */
+    left: 50%;
+    margin-left: -25px;
+    /* Một nửa của width */
+    width: 50px;
+    height: 50px;
+    border-top: 2px solid #a67c52;
+    /* Màu dây thừng */
+    border-left: 2px solid #a67c52;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+/* Chiếc đinh treo trên tường */
+.top-frame::after {
+    content: '';
+    position: absolute;
+    top: -38px;
+    /* -35.35px là đỉnh của tam giác xoay 45 độ, trừ hao để đinh nằm chính giữa */
+    left: 50%;
+    margin-left: -3px;
+    /* -3px vì đinh có chiều rộng 6px */
+    width: 6px;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3), 1px 2px 3px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* 2 Dây thừng dọc cho khung bên dưới */
+.bottom-frame::before,
+.bottom-frame::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    /* Phủ kín gap 15px */
+    width: 2px;
+    height: 20px;
+    /* Xuyên nhẹ vào khung */
+    background: #a67c52;
+    z-index: -1;
+}
+
+.bottom-frame::before {
+    left: 15px;
+}
+
+.bottom-frame::after {
+    right: 15px;
+}
+
+/* Responsive design cho Timeline */
+@media (max-width: 768px) {
+    .timeline-centered::before {
+        left: 20px;
+    }
+
+    .timeline-year {
+        text-align: left;
+        padding-left: 40px;
+    }
+
+    .timeline-item {
+        width: 100%;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        padding-left: 50px;
+        padding-right: 0;
+        text-align: left;
+        align-items: flex-start;
+        /* Ghi đè căn phải của nhánh trái trên mobile */
+    }
+
+    /* Đảm bảo khung tranh cũng căn trái trên mobile */
+    .timeline-item.left .frames-container {
+        justify-content: flex-start;
+    }
+
+    /* Cập nhật đường kẻ ngang nối vào thẻ mốc trên mobile */
+    .timeline-item.left::before,
+    .timeline-item.right::before {
+        left: 20px;
+        /* Bắt đầu từ trục dọc đang ở left 20px */
+        right: auto;
+        width: 30px;
+        /* Độ dài đường kẻ bù vào phần đệm 50px */
+    }
+
+    /* Cập nhật dấu chấm trên trục dọc trên mobile */
+    .timeline-item.left::after,
+    .timeline-item.right::after {
+        left: 9px;
+        /* Trục ở 20px trừ đi 11px tâm dấu chấm = 9px */
+        right: auto;
+    }
+}
+
+/* Modal Popup cho Ảnh */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 4px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Projects Section */
@@ -493,13 +713,15 @@ section {
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
-    background: var(--accent); /* Nền xanh chủ đạo */
+    background: var(--accent);
+    /* Nền xanh chủ đạo */
     z-index: -1;
 }
 
 .projects .section-header h2,
 .projects .section-header .accent-text {
-    color: #ffffff; /* Chữ tiêu đề màu trắng */
+    color: #ffffff;
+    /* Chữ tiêu đề màu trắng */
 }
 
 /* Blog Section */
@@ -572,7 +794,8 @@ section {
 .projects-carousel-container {
     width: 100%;
     position: relative;
-    overflow: hidden; /* Cắt phần dự án ở hai biên lề */
+    overflow: hidden;
+    /* Cắt phần dự án ở hai biên lề */
     padding: 20px 0 60px 0;
 }
 
@@ -581,9 +804,12 @@ section {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 30px;
-    padding: 20px calc(50% - 380px); /* 380px is half of 760px card */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    padding: 20px calc(50% - 380px);
+    /* 380px is half of 760px card */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Carousel Navigation Buttons */
@@ -614,7 +840,8 @@ section {
 }
 
 .carousel-btn.prev-btn {
-    left: 10px; /* Align within the container */
+    left: 10px;
+    /* Align within the container */
 }
 
 .carousel-btn.next-btn {
@@ -626,17 +853,23 @@ section {
 }
 
 .project-carousel-card {
-    flex: 0 0 760px; /* Fixed width for larger cards */
+    flex: 0 0 560px;
+    /* Thu nhỏ thẻ để vừa vặn 1 màn hình */
     scroll-snap-align: center;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    opacity: 0.8; /* Tăng độ sáng của project phụ */
-    transform: scale(0.9); /* Thu nhỏ nhẹ project phụ */
-    cursor: pointer; /* Cho phép click để cuộn tới */
+    opacity: 0.8;
+    /* Tăng độ sáng của project phụ */
+    transform: scale(0.9);
+    /* Thu nhỏ nhẹ project phụ */
+    cursor: pointer;
+    /* Cho phép click để cuộn tới */
     transform-origin: center;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--glass-border); /* Thêm viền dày hơn */
-    background: #ffffff; /* Nền trắng đặc, không bị ám màu xanh */
+    border: 2px solid var(--glass-border);
+    /* Thêm viền dày hơn */
+    background: #ffffff;
+    /* Nền trắng đặc, không bị ám màu xanh */
 }
 
 /* Javascript will add .centered to the item in the middle */
@@ -644,29 +877,31 @@ section {
     transform: scale(1.05);
     opacity: 1;
     z-index: 10;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .project-carousel-card .card-img {
-    height: 350px; /* Tăng chiều cao cho thẻ rộng hơn */
+    height: 250px;
+    /* Giảm chiều cao ảnh tương ứng với thẻ nhỏ hơn */
     overflow: hidden;
-    padding: 20px; /* Tạo khoảng trống giữa ảnh và viền thẻ */
+    padding: 20px;
+    /* Tạo khoảng trống giữa ảnh và viền thẻ */
 }
 
 .project-carousel-card .card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px; /* Bo góc riêng cho hình ảnh */
-    transition: transform 0.5s ease;
+    border-radius: 12px;
+    /* Bo góc riêng cho hình ảnh */
+    /* Đã bỏ hiệu ứng phóng to ảnh khi hover */
 }
 
-.project-carousel-card:hover .card-img img {
-    transform: scale(1.05);
-}
+/* Đã xóa .project-carousel-card:hover .card-img img { transform: scale(1.05); } */
 
 .card-content {
-    padding: 0 30px 30px 30px; /* Điều chỉnh padding nội dung */
+    padding: 0 30px 30px 30px;
+    /* Điều chỉnh padding nội dung */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -722,11 +957,13 @@ section {
 }
 
 .pub-row.expanded {
-    background-color: #f5f5f5; /* Nền xám khi mở rộng */
+    background-color: #f5f5f5;
+    /* Nền xám khi mở rộng */
 }
 
 .pub-row.expanded .pub-venue {
-    background-color: #ffffff; /* Badge màu trắng khi mở rộng */
+    background-color: #ffffff;
+    /* Badge màu trắng khi mở rộng */
 }
 
 .pub-abstract-wrapper {
@@ -738,11 +975,13 @@ section {
 
 .pub-row.expanded .pub-abstract-wrapper {
     grid-template-rows: 1fr;
-    margin-top: 15px; /* Dời margin ra wrapper để chuyển động cùng lúc */
+    margin-top: 15px;
+    /* Dời margin ra wrapper để chuyển động cùng lúc */
 }
 
 .pub-abstract {
-    min-height: 0; /* Bắt buộc để trình duyệt không tính toán sai lúc ẩn */
+    min-height: 0;
+    /* Bắt buộc để trình duyệt không tính toán sai lúc ẩn */
     overflow: hidden;
     font-size: 0.95rem;
     color: #444;
@@ -784,7 +1023,8 @@ section {
 }
 
 .pub-title a {
-    color: #1a4a7c; /* Dark blue as requested in image style */
+    color: #1a4a7c;
+    /* Dark blue as requested in image style */
     transition: color 0.2s;
 }
 
@@ -874,9 +1114,11 @@ section {
     .hero {
         gap: 30px;
     }
+
     .hero-content h1 {
         font-size: 2.8rem;
     }
+
     .experience {
         padding: 30px 40px;
     }
@@ -885,18 +1127,19 @@ section {
 /* Responsive - Tablets & Mobile */
 @media (max-width: 768px) {
     .glass-nav {
-        padding: 15px 20px;
         flex-direction: column;
         height: auto;
         gap: 15px;
+        padding: 15px;
+        border-radius: 15px;
     }
-    
+
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
     }
-    
+
     .hero {
         flex-direction: column;
         text-align: center;
@@ -909,24 +1152,24 @@ section {
         width: 100%;
         align-items: center;
     }
-    
+
     .hero-social-container {
         align-items: center;
     }
-    
+
     .pub-row {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-    
+
     .pub-img {
         flex: 0 0 auto;
         width: 100%;
         max-width: 300px;
         margin-bottom: 20px;
     }
-    
+
     .footer {
         flex-direction: column;
         gap: 20px;
@@ -941,12 +1184,15 @@ section {
     .hero-content h1 {
         font-size: 2.2rem;
     }
+
     .hero-content h2 {
         font-size: 1.4rem;
     }
+
     .experience {
         padding: 20px;
     }
+
     .section-header h2 {
         font-size: 2rem;
     }

@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const numOriginalCards = carouselCards.length - 2;
         
         // 2. Initial setup
-        const cardWidthWithGap = 790; // 760px + 30px gap
+        const cardWidthWithGap = 590; // 560px + 30px gap
         let isTeleporting = false;
         
         // Move to the first real card (index 1 because index 0 is the clone of the last card)
@@ -199,6 +199,31 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.addEventListener('resize', () => {
             window.requestAnimationFrame(updateCenteredCard);
+        });
+    }
+    
+    // 8. Image Modal Logic
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeBtn = document.querySelector(".close-modal");
+
+    if (modal && modalImg && closeBtn) {
+        document.querySelectorAll(".hanging-frame img").forEach(img => {
+            img.style.cursor = "pointer";
+            img.addEventListener("click", function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            });
+        });
+
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        modal.addEventListener("click", function(e) {
+            if(e.target === modal) {
+                modal.style.display = "none";
+            }
         });
     }
 });
