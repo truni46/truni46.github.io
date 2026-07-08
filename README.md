@@ -1,3 +1,3 @@
-# truni46.github.io
+# Truni's Portfolio
 
-![Visitor Count](https://komarev.com/ghpvc/?username=truni46-github-io&color=73b609&style=flat-square&label=REPO+VIEWS)
+![Visitor Count](https://komarev.com/ghpvc/?username=truni46-github-io&color=73b609&style=flat-square&label=Repo+views)
